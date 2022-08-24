@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Second Assesment</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <style>
+      .avatar {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .c-avatar {
+        position: relative;
+      }
+      .c-avatar input {
+        display: block;
+        cursor: pointer;
+        width: 8rem;
+        height: 8rem;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card.auth {
+        border-radius: 1rem;
+        width: 30rem;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function () {
+        $(document).on("submit", "form", function (event) {
+            alert('aa');
+          event.preventDefault();
+          $.ajax({
+            url: $(this).attr("action"),
+            type: $(this).attr("method"),
+            dataType: "JSON",
+            enctype: 'multipart/form-data',
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                console.log(result);
+            },
+            error: function () {
+                console.log("error");
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-auto">
+        <div class="card auth p-5">
+          <form action="http://13.212.226.116:8000/api/register" method="POST">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <div class="c-avatar mb-5">
+                  <img
+                    src="images/violet.webp"
+                    class="avatar sm"
+                    alt=""
+                    srcset=""
+                    id="imgPreview"
+                  />
+                  <input type="file" required name="profile_image" accept="image/*" onchange="imgPreview.src=window.URL.createObjectURL(this.files[0])" />
+                </div>
+              </div>
+            </div>
+            <div
+              id="carouselExampleControls"
+              class="carousel slide"
+              data-bs-ride="carousel"
+              data-bs-interval="1000000"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">First Name</label>
+                        <input
+                          type="text"
+                          name="first_name"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">Last Name</label>
+                        <input
+                          type="text"
+                          name="last_name"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input
+                          type="text"
+                          name="username"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input
+                          type="password"
+                          name="password"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col-auto">
+                        <a
+                    class="btn btn-primary mt-3"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next"
+                    >Continue</a
+                  >
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label">Telephone</label>
+                        <input
+                          type="tel"
+                          name="telephone"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <textarea name="address" required class="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">City</label>
+                        <input
+                          type="text"
+                          name="city"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">Province</label>
+                        <input
+                          type="text"
+                          name="province"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="mb-3">
+                        <label class="form-label">Country</label>
+                        <input
+                          type="text"
+                          name="country"
+                          required
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col-auto">
+                        <a
+                    class="btn btn-muted mt-3"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev"
+                    >Back</a
+                  >
+                    </div>
+                    <div class="col-auto">
+                        <button
+                    class="btn btn-primary mt-3"
+                    >Sign Up</button
+                  >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
